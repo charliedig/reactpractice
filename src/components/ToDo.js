@@ -9,6 +9,7 @@ class ToDo extends Component {
       this.props.listoftodo.map((todo) => (
           <Item key={todo.id} atodo={todo} markComplete={this.props.markComplete}
             delTodo={this.props.delTodo}
+            setHeader={this.props.setHeader}
           />
         ))
     )

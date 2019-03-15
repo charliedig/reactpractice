@@ -12,6 +12,11 @@ class Item extends Component {
     }
   }
 
+  giveAlert = (title) => {
+    alert(title);
+    this.props.setHeader(title);
+  }
+
 
 
   render() {
@@ -20,7 +25,7 @@ class Item extends Component {
       <div style={this.getStyle()}>
         <p>
           <input style={{float: 'left'}} type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>
-          {title}
+          <span onClick={this.giveAlert.bind(this, title)}>{title}</span>
           <button style={{color: 'red', cursor: 'pointer', float: 'right'}} onClick={this.props.delTodo.bind(this, id)}>x</button>
         </p>
       </div>

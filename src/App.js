@@ -25,7 +25,9 @@ class App extends Component {
         title: 'Playing super smash bros',
         completed: false
       }
-    ]
+    ],
+
+    headerText: ''
   }
 
 markComplete = (id) => {
@@ -62,16 +64,24 @@ addTodo = (todo) => {
       );
 }
 
+setHeader = (title) => {
+    this.setState({
+      headerText:title
+    });
+}
+
   render() {
     return (
       <Router>
       <div className="App">
-        <Header/>
+        <Header headerText={this.state.headerText}/>
         <Route exact path="/" render={props => (
           <div>
           <AddTodo addTodo={this.addTodo}/>
           <Todo listoftodo={this.state.listoftodo} markComplete={this.markComplete}
-            delTodo={this.delTodo}/>
+            delTodo={this.delTodo}
+            setHeader={this.setHeader}
+            />
           </div>
         )} />
         <Route path="/about" component={About} />
