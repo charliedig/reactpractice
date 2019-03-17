@@ -8,6 +8,7 @@ class Header extends Component {
       <header style = {headerStyle}>
         <h1>Todo List {this.props.headerText}</h1>
         <Link to="/">Home</Link> | <Link to="/about" >About</Link>
+        | <Link to="/aboutadd">Selected</Link>
       </header>
     )
   }

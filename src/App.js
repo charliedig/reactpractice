@@ -6,8 +6,10 @@ import AddTodo from './components/addTodo';
 import uuid from 'uuid';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import About from './components/pages/about';
+import AboutAdd from './components/pages/Aboutadd';
 
 class App extends Component {
+
   state = {
     listoftodo: [
       {
@@ -43,6 +45,19 @@ markComplete = (id) => {
   );
 }
 
+markCompletetwo = (id) => {
+  this.setState(
+    {
+      listoftodo: [...this.state.listoftodo.map((atodo) => {
+          if (atodo.id == id) {
+            atodo.completed = !atodo.completed
+          }
+          return atodo;
+      })]
+    }
+  );
+}
+
 delTodo = (id) => {
   this.setState(
     {
@@ -70,6 +85,24 @@ setHeader = (title) => {
     });
 }
 
+delTodoBlue = (id) => {
+  let newtodo = this.state.listoftodo.filter(atodo => {
+    return atodo.id !== id
+  })
+  this.setState({
+      listoftodo: newtodo
+  })
+}
+
+delTodored = (id) => {
+  let newtodo = [...this.state.listoftodo.filter(atodo => {
+    return atodo.id !== id
+  })]
+  this.setState({
+      listoftodo: newtodo
+  })
+}
+
   render() {
     return (
       <Router>
@@ -78,13 +111,19 @@ setHeader = (title) => {
         <Route exact path="/" render={props => (
           <div>
           <AddTodo addTodo={this.addTodo}/>
-          <Todo listoftodo={this.state.listoftodo} markComplete={this.markComplete}
+          <Todo listoftodo={this.state.listoftodo}
+            markComplete={this.markCompletetwo}
             delTodo={this.delTodo}
             setHeader={this.setHeader}
+            delTodoBlue={this.delTodored}
             />
           </div>
         )} />
         <Route path="/about" component={About} />
+        <Route path="/aboutadd" render={props => (
+            <AboutAdd selectedTodo={this.state.listoftodo}/>
+          )}
+        />
       </div>
       </Router>
     );

@@ -7,9 +7,11 @@ class ToDo extends Component {
   render() {
     return (
       this.props.listoftodo.map((todo) => (
-          <Item key={todo.id} atodo={todo} markComplete={this.props.markComplete}
+          <Item key={todo.id} atodo={todo}
+            markComplete={this.props.markComplete}
             delTodo={this.props.delTodo}
             setHeader={this.props.setHeader}
+            delTodoBlue={this.props.delTodoBlue}
           />
         ))
     )
